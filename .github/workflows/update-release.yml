@@ -1,0 +1,13 @@
+on:
+  workflow_dispatch:
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up node
+        uses: actions/setup-node@v2
+        with:
+          node-version: "18.*"
+      - name: show readme
+        run: cat README.md
