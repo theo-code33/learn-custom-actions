@@ -12,7 +12,7 @@ jobs:
       - name: show readme
         run: cat README.md
       - name: Hello world action step
-        uses: ./actions/who-to-greet/
+        uses: ./actions/who-to-greet
         id: hello
         with:
           who-to-greet: "Mona the Octocat"
