@@ -11,3 +11,10 @@ jobs:
           node-version: "18.*"
       - name: show readme
         run: cat README.md
+      - name: Hello world action step
+        uses: ./actions/who-to-greet/
+        id: hello
+        with:
+          who-to-greet: "Mona the Octocat"
+      - name: Get the output time
+        run: echo "The time was ${{ steps.hello.outputs.time }}"
