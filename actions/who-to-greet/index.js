@@ -11,9 +11,10 @@ const generateNewRelease = async () => {
     core.info(`Creating new release ${version}...`)
     core.info(`context: ${JSON.stringify(context)}`)
     await octokit.rest.repos.createRelease({
-      ...context.repo,
+      owner: context.repo.owner.login,
+      repo: context.repo.repository.html_url,
       tag_name: version,
-      // tag_commitish: context.sha,
+      tag_commitish: context.sha,
       name: version,
       body: `New release ${version} published to NPM.`,
       draft: false,
