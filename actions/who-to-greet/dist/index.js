@@ -9818,10 +9818,11 @@ const generateNewRelease = async () => {
     const context = github.context;
     console.log(`version: ${version}`)
     const octokit = github.getOctokit(token);
+    core.info(`Creating new release ${version}...`)
     await octokit.rest.repos.createRelease({
       ...context.repo,
       tag_name: version,
-      tag_commitish: context.sha,
+      // tag_commitish: context.sha,
       name: version,
       body: `New release ${version} published to NPM.`,
       draft: false,
