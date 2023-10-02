@@ -1,17 +1,25 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 
-const whoToGreet = () => {
+const generateNewRelease = async () => {
   try {
-    const nameToGreet = core.getInput('who-to-greet');
-    console.log(`Hello ${nameToGreet}!`);
-    const time = (new Date()).toTimeString();
-    core.setOutput("time", time);
-    const payload = JSON.stringify(github.context.payload, undefined, 2)
-    console.log(`The event payload: ${payload}`);
+    const version = core.getInput('version');
+    const context = github.context;
+    console.log(`version: ${version}`)
+    const octokit = github.getOctokit(context.token);
+    await octokit.rest.release.createRelease({
+      ...context.repo,
+      tag_name: version,
+      tag_commitish: context.sha,
+      name: version,
+      body: `New release ${version} published to NPM.`,
+      draft: false,
+      prerelease: false,
+      generate_release_notes: false,
+    })
   } catch (error) {
     core.setFailed(error.message);
   } 
 }
 
-whoToGreet()
+generateNewRelease()
