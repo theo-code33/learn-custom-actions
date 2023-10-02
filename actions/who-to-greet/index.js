@@ -8,7 +8,7 @@ const generateNewRelease = async () => {
     const context = github.context;
     console.log(`version: ${version}`)
     const octokit = github.getOctokit(token);
-    await octokit.rest.release.createRelease({
+    await octokit.rest.repos.createRelease({
       ...context.repo,
       tag_name: version,
       tag_commitish: context.sha,
