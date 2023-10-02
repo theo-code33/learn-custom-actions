@@ -13,3 +13,5 @@ const whoToGreet = () => {
     core.setFailed(error.message);
   } 
 }
+
+whoToGreet()
