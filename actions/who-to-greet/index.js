@@ -13,7 +13,8 @@ const generateNewRelease = async () => {
     core.info(`repo: ${JSON.stringify(context.payload.repository)}`)
     await octokit.rest.repos.createRelease({
       owner: context.payload.repository.owner.login,
-      repo: context.payload.repository.html_url,
+      // repo: context.payload.repository.html_url,
+      repo: "learn-custom-actions",
       tag_name: version,
       tag_commitish: context.sha,
       name: version,
