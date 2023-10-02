@@ -4,9 +4,10 @@ const github = require('@actions/github');
 const generateNewRelease = async () => {
   try {
     const version = core.getInput('version');
+    const token = core.getInput('token');
     const context = github.context;
     console.log(`version: ${version}`)
-    const octokit = github.getOctokit(context.token);
+    const octokit = github.getOctokit(token);
     await octokit.rest.release.createRelease({
       ...context.repo,
       tag_name: version,
