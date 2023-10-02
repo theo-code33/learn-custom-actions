@@ -1,5 +1,9 @@
 on:
   workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+      - "V*"
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -15,6 +19,6 @@ jobs:
         uses: ./actions/who-to-greet
         id: hello
         with:
-          who-to-greet: "Mona the Octocat"
+          version: "v1.0.0"
       - name: Get the output time
         run: echo "The time was ${{ steps.hello.outputs.time }}"
