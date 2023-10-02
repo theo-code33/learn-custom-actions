@@ -19,7 +19,7 @@ jobs:
         uses: ./actions/who-to-greet
         id: hello
         with:
-          version: $GITHUB_REF_NAME
+          version: ${{ github.ref_name }}
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Get the output time
         run: echo "The time was ${{ steps.hello.outputs.time }}"
