@@ -10,7 +10,7 @@ const generateNewRelease = async () => {
     const octokit = github.getOctokit(token);
     core.info(`Creating new release ${version}...`)
     core.info(`login: ${JSON.stringify(context.payload.repository.owner.login)}`)
-    core.info(`repo: ${JSON.stringify(context.payload.repository.full_name)}`)
+    core.info(`repo: ${JSON.stringify(context.payload.repository)}`)
     await octokit.rest.repos.createRelease({
       owner: context.payload.repository.owner.login,
       repo: context.payload.repository.full_name,
