@@ -9818,13 +9818,9 @@ const generateNewRelease = async () => {
     const context = github.context;
     console.log(`version: ${version}`)
     const octokit = github.getOctokit(token);
-    core.info(`Creating new release ${version}...`)
-    core.info(`login: ${JSON.stringify(context.payload.repository.owner.login)}`)
-    core.info(`repo: ${JSON.stringify(context.payload.repository)}`)
     await octokit.rest.repos.createRelease({
       owner: context.payload.repository.owner.login,
-      // repo: context.payload.repository.html_url,
-      repo: "learn-custom-actions",
+      repo: context.payload.repository.full_name.split("/")[1],
       tag_name: version,
       tag_commitish: context.sha,
       name: version,
