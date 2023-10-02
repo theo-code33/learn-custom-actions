@@ -11,8 +11,8 @@ const generateNewRelease = async () => {
     core.info(`Creating new release ${version}...`)
     core.info(`context: ${JSON.stringify(context.payload.repository)}`)
     await octokit.rest.repos.createRelease({
-      owner: context.repository.owner.login,
-      repo: context.repository.full_name,
+      owner: context.repository.payload.repository.owner.login,
+      repo: context.repository.payload.repository.full_name,
       tag_name: version,
       tag_commitish: context.sha,
       name: version,
