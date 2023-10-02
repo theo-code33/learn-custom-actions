@@ -9819,6 +9819,7 @@ const generateNewRelease = async () => {
     console.log(`version: ${version}`)
     const octokit = github.getOctokit(token);
     core.info(`Creating new release ${version}...`)
+    core.info(`context: ${JSON.stringify(context)}`)
     await octokit.rest.repos.createRelease({
       ...context.repo,
       tag_name: version,
