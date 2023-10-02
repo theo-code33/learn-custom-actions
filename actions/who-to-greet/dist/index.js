@@ -9822,7 +9822,7 @@ const generateNewRelease = async () => {
     core.info(`context: ${JSON.stringify(context)}`)
     await octokit.rest.repos.createRelease({
       owner: context.repo.owner.login,
-      repo: context.repo.repository.html_url,
+      repo: context.repo.repository.full_name,
       tag_name: version,
       tag_commitish: context.sha,
       name: version,
